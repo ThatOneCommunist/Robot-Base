@@ -6,6 +6,10 @@ package frc.robot;
 
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.util.Units;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -50,5 +54,18 @@ public final class Constants {
     public static final IdleMode driveNuetralMode = IdleMode.kBrake;
     public static final double driveGearRatio = 5.67; //placeholder numbers
     public static final double wheelCircumference = 5.67;
+  }
+  public static class kswerve{
+    public static final double TRACK_WIDTH = Units.inchesToMeters(19.5); // Width of the drivetrain measured from the middle of the wheels.
+    public static final double WHEEL_BASE = Units.inchesToMeters(19.5); // Length of the drivetrain measured from the middle of the wheels.
+    public static final double WHEEL_DIAMETER = Units.inchesToMeters(4);
+    public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
+
+    public static final SwerveDriveKinematics KINEMATICS = new SwerveDriveKinematics(
+      new Translation2d(WHEEL_BASE / 2.0, TRACK_WIDTH / 2.0),
+      new Translation2d(WHEEL_BASE / 2.0, -TRACK_WIDTH / 2.0),
+      new Translation2d(-WHEEL_BASE / 2.0, TRACK_WIDTH / 2.0),
+      new Translation2d(-WHEEL_BASE / 2.0, -TRACK_WIDTH / 2.0)
+    );
   }
 }
